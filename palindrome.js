@@ -1,7 +1,10 @@
 const findPalindrome = () => { 
     const text = document.getElementById("text").value.split(" ");
-    const ul = document.getElementById("palindroms");
-    ul.innerHTML=""
+    const ul = document.createElement("ul");
+    const result = document.querySelector(".result")
+    result.innerHTML=""
+    ul.classList.add("palindrome")
+    let count = 0;
     text.forEach(word => {
         let i=0;
         let n=word.length -1;
@@ -17,6 +20,13 @@ const findPalindrome = () => {
             li.classList.add("list");
             li.appendChild(data);
             ul.appendChild(li)
+            count++;
         }
     })
+
+    const h1 = document.createElement("h1");
+    const data = document.createTextNode(`Number of Palindrome : ${count}`);
+    h1.appendChild(data)
+    result.appendChild(h1)
+    result.appendChild(ul)
 }
