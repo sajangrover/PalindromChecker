@@ -1,29 +1,35 @@
 const findPalindrome = () => { 
-    const text = document.getElementById("text").value.split(" ");
+    const text = document.getElementById("text").value.split("\n");
     const ul = document.createElement("ul");
     const result = document.querySelector(".result")
     result.innerHTML=""
     ul.classList.add("palindrome")
     let count = 0;
-    text.forEach(word => {
-        let i=0;
-        let n=word.length -1;
-        if(n >= 0){
-            while(i<=n){
-                if(word[i]!=word[n])
-                    break;
-                i++;
-                n--;
+    console.log(text)
+    text.forEach(line => {
+        const words = line.split(" ");
+        words.forEach(word => {
+            let i=0;
+            let n=word.length -1;
+            if(n >= 0){
+                while(i<=n){
+                    if(word[i]==' ' || word[n]==' ')
+                        break;
+                    if(word[i]!=word[n])
+                        break;
+                    i++;
+                    n--;
+                }
+                if(i>=n){
+                    const li = document.createElement("li");
+                    const data = document.createTextNode(word);
+                    li.classList.add("list");
+                    li.appendChild(data);
+                    ul.appendChild(li)
+                    count++;
+                }
             }
-            if(i>=n){
-                const li = document.createElement("li");
-                const data = document.createTextNode(word);
-                li.classList.add("list");
-                li.appendChild(data);
-                ul.appendChild(li)
-                count++;
-            }
-        }
+        })
     })
 
     if(count>0){
